@@ -20,19 +20,12 @@
 	-webkit-background-clip: text;
 	font-family: "Noto Sans CJK KR";
 }
-
 </style>
 
 <title>의성고추농장</title>
 </head>
 <body onload="printClock()">
-	<nav class="navbar navbar-expand  navbar-dark bg-dark">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="./welcome.jsp">Home</a>
-			</div>
-		</div>
-	</nav>
+	<%@include file="menu.jsp"%>
 	<%!String greeting = "안동고추농장";
 	String tagline = "오시는 길";%>
 	<div class="jumbotron">
@@ -46,7 +39,7 @@
 	<!-- 현재 시간 -->
 	<div style="text-align: center;">
 		<div
-			style="width: 600px;  display: inline-block; height: 250px; line-height: 250px; color: #666; font-size: 100px; text-align: center;"
+			style="width: 600px; display: inline-block; height: 250px; line-height: 250px; color: #666; font-size: 100px; text-align: center;"
 			id="clock"></div>
 	</div>
 	<br>
@@ -84,6 +77,19 @@
 			<a class="btn-floating blue accent-1"><i class="fas fa-envelope"></i></a>
 			<p>info@gmail.com</p>
 			<p>sale@gmail.com</p>
+		</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+		<div
+			style="text-align: center; width: 100%; background-color: #f5f5f5;">
+			<%@include file="footer.jsp"%>
 		</div>
 </body>
 </html>
