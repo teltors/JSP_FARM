@@ -15,7 +15,7 @@
 	margin: 0;
 	font-weight: 900;
 	letter-spacing: 10px;
-	background: url(./resources/image/HP.jpg) center;
+	background: url(./resources/image/page/HP.jpg) center;
 	-webkit-text-fill-color: transparent;
 	-webkit-background-clip: text;
 	font-family: "Noto Sans CJK KR";
@@ -37,7 +37,7 @@
 	</div>
 
 	<!-- 현재 시간 -->
-	<div style="text-align: center;">
+	<div style="text-align: center; margin: 200px 0px 300px 0px; ">
 		<div
 			style="width: 600px; display: inline-block; height: 250px; line-height: 250px; color: #666; font-size: 100px; text-align: center;"
 			id="clock"></div>

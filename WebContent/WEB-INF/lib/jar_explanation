@@ -1,0 +1,4 @@
+jstl-1.2 : 자바 스텐다드 태그 라이브러리 | 반복문, 조건문과 같은 논리적 구조 작업, XML문서 조작, 국제화 태그조작, SQL조작 수행등을 위한 태그 지원
+cos : 파일 업로드 컴포넌트 /new DefaultFileRenamePolicy()를 이용해 간단히 파일을 중복을 피할 수 있다
+commons-fileupload : 파일 업로드 컴포넌트
+commons-io : jdk 1.7이상사용가능
