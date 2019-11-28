@@ -3,6 +3,16 @@
 <%@ page import="dto.Product"%>
 <%@ page import="dao.ProductRepository"%>
 <%
+	String sessionId=(String) session.getAttribute("sessionId");
+
+	if(sessionId == null){
+		
+		out.println("<script>alert('로그인이 필요합니다');history.back();</script>");
+				
+	} else{
+%>
+
+<%
 	String id = request.getParameter("id");
 	if (id == null || id.trim().equals("")) {
 		response.sendRedirect("products.jsp");
@@ -10,11 +20,7 @@
 	}
 
 	ProductRepository dao = ProductRepository.getInstance();
-
-	Product product = dao.getProductById(id);
-	if (product == null) {
-		response.sendRedirect("exceptionNoProductId.jsp");
-	}
+	
 
 	ArrayList<Product> goodsList = dao.getAllProducts();
 	Product goods = new Product();
@@ -46,6 +52,7 @@
 		goods.setQuantity(1);
 		list.add(goods);
 	}
-
+	
 	response.sendRedirect("product.jsp?id=" + id);
+}
 %>

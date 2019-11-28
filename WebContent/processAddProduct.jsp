@@ -3,9 +3,8 @@
 <%@ page import="com.oreilly.servlet.*" %>
 <%@ page import="com.oreilly.servlet.multipart.*" %>
 <%@ page import="java.util.*" %> <!-- Enumeration 사용을 위해 -->
-
-<%@ page import="dto.Product"%>
-<%@ page import="dao.ProductRepository"%>
+<%@ page import="java.sql.*" %>
+<%@ include file="dbconn.jsp"%>
 
 <%
 	request.setCharacterEncoding("UTF-8");
@@ -49,20 +48,25 @@
 	String fname = (String) files.nextElement();
 	String fileName =multi.getFilesystemName(fname);
 
-	ProductRepository dao = ProductRepository.getInstance(); //폼에서 입력된 데이터를 저장하도록 ProductRepository변수의 dao 를 생성하고
-
-	Product newProduct = new Product();
-	newProduct.setProductId(productId);
-	newProduct.setPname(name);
-	newProduct.setUnitPrice(price);
-	newProduct.setDescription(description);
-	newProduct.setManufacturer(manufacturer);
-	newProduct.setCategory(category);
-	newProduct.setUnitsInStock(stock);
-	newProduct.setCondition(condition);
-	newProduct.setFilename(filename);
-
-	dao.addProduct(newProduct); //dao의 addProduct메소드를 호출
-
+	//sql
+	PreparedStatement pstmt = null;
+	String sql = "INSERT INTO product values(?,?,?,?,?,?,?,?,?)";
+	pstmt = conn.prepareStatement(sql);
+	pstmt.setString(1, productId);
+	pstmt.setString(2, name);
+	pstmt.setInt(3, price);
+	pstmt.setString(4, description);
+	pstmt.setString(5, manufacturer);
+	pstmt.setString(6, category);
+	pstmt.setLong(7, stock);
+	pstmt.setString(8, condition);
+	pstmt.setString(9, fileName);
+	pstmt.executeUpdate();
+	
+	if(pstmt != null)
+		pstmt.close();
+	if(conn != null)
+		conn.close();
+	
 	response.sendRedirect("products.jsp");
 %>

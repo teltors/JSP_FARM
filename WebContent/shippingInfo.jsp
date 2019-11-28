@@ -19,29 +19,28 @@
 				<div class="col-sm-3">
 					<input name="name" type="text" class="form-control">
 				</div>
+			</div><div class="form-group row">
+				<label class="col-sm-2">전화번호</label>
+				<div class="col-sm-3">
+					<input name="tel" type="text" class="form-control">
+				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2">배송일</label>
+				<label class="col-sm-2">받으실 날짜</label>
 				<div class="col-sm-3">
 					<input name="shippingDate" type="text" class="form-control">(yyyy/mm/dd)
 				</div>
 			</div>
 			<div class="form-group row">
-				<label class="col-sm-2">국가명</label>
-				<div class="col-sm-3">
-					<input name="country" type="text" class="form-control">
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2">우편번호</label>
-				<div class="col-sm-3">
-					<input name="zipCode" type="text" class="form-control">
-				</div>
-			</div>
-			<div class="form-group row">
 				<label class="col-sm-2">주소</label>
-				<div class="col-sm-5">
+				<div class="col-sm-10">
 					<input name="addressName" type="text" class="form-control">
+				</div>
+			</div>
+			<div class="form-group row">
+				<label class="col-sm-2">요청사항</label>
+				<div class="col-sm-10">
+					<input name="requ" type="text" class="form-control">
 				</div>
 			</div>
 			<div class="form-group row">

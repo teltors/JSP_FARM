@@ -1,5 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
+<%@ page import="java.net.URLEncoder" %>
+<%@ page import="java.net.URL" %>
+<%@ page import="java.net.HttpURLConnection" %>
+<%@ page import="java.io.BufferedReader" %>
+<%@ page import="java.io.InputStreamReader" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +16,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" />
 <style>
 .display-3 {
-	font-size: 160px;
+	font-size: 110px;
 	text-align: center;
 	margin: 0;
 	font-weight: 900;
@@ -22,17 +28,17 @@
 }
 </style>
 
-<title>의성고추농장</title>
+<title>실시간 농산물 가격</title>
 </head>
 <body onload="printClock()">
 	<%@include file="menu.jsp"%>
-	<%!String greeting = "안동고추농장";
+	<%!String greeting = "실시간 농산물 가격";
 	String tagline = "오시는 길";%>
 	<div class="jumbotron">
 		<div class="container">
-			<h1 class="display-3">
+			<h2 class="display-3">
 				<%=greeting%>
-			</h1>
+			</h2>
 		</div>
 	</div>
 
@@ -88,7 +94,7 @@
 <br>
 
 		<div
-			style="text-align: center; width: 100%; background-color: #f5f5f5;">
+			style="text-align: center; width: 100%; ">
 			<%@include file="footer.jsp"%>
 		</div>
 </body>

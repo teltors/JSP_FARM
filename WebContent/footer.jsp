@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+	pageEncoding="utf-8"%>
 <!-- Footer -->
 
-<footer class="page-footer font-small blue-grey lighten-5" style="width: 100%;">
+<footer class="page-footer font-small blue-grey lighten-5" style="width: 100%; margin-top: 500px;">
 
   <div style="background-color: #ff4444;">
     <div class="container">
@@ -12,7 +12,7 @@
 
         <!-- Grid column -->
         <div class="col-md-6 col-lg-5 text-center text-md-left mb-4 mb-md-0">
-          <h6 class="mb-0">Get connected with us on social networks!</h6>
+          <h6 class="mb-0">NongSanMall 고객지원</h6>
         </div>
         <!-- Grid column -->
 
@@ -50,13 +50,13 @@
   </div>
 
   <!-- Footer Links -->
-  <div class="container text-center text-md-left mt-5" style="border: 2px solid red; ">
+  <div class="container text-center text-md-left mt-5" >
 
     <!-- Grid row -->
-    <div class="row mt-3 dark-grey-text" style="border: 2px solid red;">
+    <div class="row mt-3 dark-grey-text">
 
       <!-- Grid column -->
-      <div class="col-md-3 col-lg-4 col-xl-3 mb-4" style="border: 2px solid red;">
+      <div class="col-md-3 col-lg-4 col-xl-3 mb-4" >
 
         <!-- Content -->
         <h6 class="text-uppercase font-weight-bold">Company name</h6>

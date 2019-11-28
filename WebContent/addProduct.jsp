@@ -82,7 +82,7 @@
 			</div>
 			<div class="form-group row">
 				<div class="col-sm-offset-2 col-sm-10 ">
-					<input type="button" class="btn btn-primary" value="<fmt:message key="button" />" onclick="CheckAddProduct()">
+					<input type="button" class="btn btn-primary " value="<fmt:message key="button" />" onclick="CheckAddProduct()">
 				</div>
 			</div>
 		</form>

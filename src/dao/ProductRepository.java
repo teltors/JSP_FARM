@@ -1,8 +1,13 @@
 package dao; //Database Access Object
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 import dto.Product;
+import mvc.database.DBConnection;
+import mvc.model.BoardDTO;
 
 public class ProductRepository {
 
@@ -17,42 +22,62 @@ public class ProductRepository {
 
 
 	public ProductRepository() {
-		Product phone = new Product("P1234", "iPhone 6s", 800000);
-		phone.setDescription("4.7-inch, 1334X750 Renina HD display, 8-megapixel iSight Camera");
-		phone.setCategory("Smart Phone");
-		phone.setManufacturer("Apple");
-		phone.setUnitsInStock(1000);
-		phone.setCondition("New");
-		phone.setFilename("P1234.png");
-
-		Product notebook = new Product("P1235", "LG PC 洹몃옩", 1500000);
-		notebook.setDescription("13.3-inch, IPS LED display, 5rd Generation Intel Core processors");
-		notebook.setCategory("Notebook");
-		notebook.setManufacturer("LG");
-		notebook.setUnitsInStock(1000);
-		notebook.setCondition("Refurbished");
-		notebook.setFilename("P1235.png");
-
-		Product tablet = new Product("P1236", "Galaxy Tab S", 900000);
-		tablet.setDescription("212.8*125.6*6.6mm,  Super AMOLED display, Octa-Core processor");
-		tablet.setCategory("Tablet");
-		tablet.setManufacturer("Samsung");
-		tablet.setUnitsInStock(1000);
-		tablet.setCondition("Old");
-		tablet.setFilename("P1236.png");
-
-		listOfProducts.add(phone);
-		listOfProducts.add(notebook);
-		listOfProducts.add(tablet);
+	
 	}
 	
-	public ArrayList<Product> getAllProducts() { 
-		return listOfProducts;
-	}
+	//product 테이블의 레코드 가져오기
+		public ArrayList<Product> getAllProducts() {
+			Connection conn = null;
+			PreparedStatement pstmt = null;
+			ResultSet rs = null;
+
+			String sql;
+
+			sql = "select * from product";
+			
+			ArrayList<Product> listOfProducts = new ArrayList<Product>();
+
+			try {
+				conn = DBConnection.getConnection();
+				pstmt = conn.prepareStatement(sql);
+				rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					Product product = new Product();
+					product.setProductId(rs.getString("p_id"));
+					product.setPname(rs.getString("p_name"));
+					product.setUnitPrice(rs.getInt("p_unitPrice"));
+					product.setDescription(rs.getString("p_description"));
+					product.setManufacturer(rs.getString("p_manufacturer"));
+					product.setCategory(rs.getString("p_category"));
+					product.setUnitsInStock(rs.getLong("p_unitsInStock"));
+					product.setCondition(rs.getString("p_condition"));
+					product.setFilename(rs.getString("p_fileName"));
+					listOfProducts.add(product);
+					
+				}
+				return listOfProducts;
+			} catch (Exception ex) {
+				System.out.println("getMemberList() 에러 : " + ex);
+			} finally {
+				try {
+					if (rs != null) 
+						rs.close();							
+					if (pstmt != null) 
+						pstmt.close();				
+					if (conn != null) 
+						conn.close();
+				} catch (Exception ex) {
+					throw new RuntimeException(ex.getMessage());
+				}			
+			}
+			return null;
+		}
+	
 	
 	public Product getProductById(String productId) { 
 		Product productById = null;
-
+		
 		for (int i = 0; i < listOfProducts.size(); i++) {
 			Product product = listOfProducts.get(i);
 			if (product != null && product.getProductId() != null && product.getProductId().equals(productId)) {

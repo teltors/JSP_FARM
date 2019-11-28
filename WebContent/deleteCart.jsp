@@ -8,6 +8,6 @@
 		return;
 	}
 
-	session.invalidate();
+	session.removeAttribute("cartlist");
 	response.sendRedirect("cart.jsp");
 %>

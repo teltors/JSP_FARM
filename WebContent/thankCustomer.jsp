@@ -1,11 +1,55 @@
 <%@ page contentType="text/html; charset=utf-8"%>
 <%@ page import="java.net.URLDecoder"%>
+<%@ page import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
+
 <html>
 <head>
 <link rel="stylesheet" href="./resources/css/bootstrap.min.css" />
 <title>주문 완료</title>
 </head>
 <body>
+
+<%
+	request.setCharacterEncoding("UTF-8");
+
+	String id = request.getParameter("id");
+	String cartid = request.getParameter("cartid");
+	String name = request.getParameter("name");
+	String tel = request.getParameter("tel");
+	String address = request.getParameter("address");
+	String shipday = request.getParameter("shipday");
+	String requ = request.getParameter("requ");
+	String pro = request.getParameter("pro");
+	String sum2 = request.getParameter("sum2");
+	String confirm = request.getParameterValues("confirm")[0];
+
+	Date currentDatetime = new Date(System.currentTimeMillis());
+	java.sql.Date sqlDate = new java.sql.Date(currentDatetime.getTime());
+	java.sql.Timestamp timestamp = new java.sql.Timestamp(currentDatetime.getTime());
+%>
+
+<sql:setDataSource var="dataSource"
+	url="jdbc:mysql://localhost:3306/pepper"
+	driver="com.mysql.jdbc.Driver" user="root" password="1111" />
+
+<sql:update dataSource="${dataSource}" var="resultSet">
+   INSERT INTO shipping VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+   <sql:param value="<%=id%>" />
+	<sql:param value="<%=cartid%>" />
+	<sql:param value="<%=name%>" />
+	<sql:param value="<%=tel%>" />
+	<sql:param value="<%=address%>" />
+	<sql:param value="<%=timestamp%>" />
+	<sql:param value="<%=shipday%>" />
+	<sql:param value="<%=requ%>" />
+	<sql:param value="<%=pro%>" />
+	<sql:param value="<%=sum2%>" />
+	<sql:param value="<%=confirm%>" />
+</sql:update>
+
+
 	<%
 		String shipping_cartId = "";
 		String shipping_name = "";
@@ -35,7 +79,7 @@
 	</div>
 	<div class="container">
 		<h2 class="alert alert-danger">주문해주셔서 감사합니다.</h2>
-		<p>주문은	<%	out.println(shipping_shippingDate);	%>에 배송될 예정입니다! !	
+		<p>주문은	<%	out.println(shipping_shippingDate);	%>까지 최대한 배송 할 예정입니다! !	
 		<p>주문번호 :	<%	out.println(shipping_cartId);	%>
 	</div>
 	<div class="container">
@@ -43,38 +87,4 @@
 	</div>
 </body>
 </html>
-<%
-	session.invalidate();
 
-	for (int i = 0; i < cookies.length; i++) {
-		Cookie thisCookie = cookies[i];
-		String n = thisCookie.getName();
-		if (n.equals("Customer_Id"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_name"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_phoneNumber"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_country"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_zipCode"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Customer_addressName"))
-			thisCookie.setMaxAge(0);
-
-		if (n.equals("Shipping_cartId"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Shipping_name"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Shipping_shippingDate"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Shipping_country"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Shipping_zipCode"))
-			thisCookie.setMaxAge(0);
-		if (n.equals("Shipping_addressName"))
-			thisCookie.setMaxAge(0);
-		
-		response.addCookie(thisCookie);
-	}
-%>
